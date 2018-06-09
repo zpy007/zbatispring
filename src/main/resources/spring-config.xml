@@ -7,7 +7,7 @@
     <context:property-placeholder location="param-config.properties"/>
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="mapperLocations" value="classpath:mappers/ClientsMapper.xml"/>
+        <property name="mapperLocations" value="ClientsMapper.xml"/>
     </bean>
     <bean destroy-method="close" id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="username" value="${jdbc.username}"/>
@@ -15,16 +15,10 @@
         <property name="url" value="${jdbc.url}"/>
         <property name="driverClassName" value="${jdbc.driver}"/>
     </bean>
-    <bean id="mapperFactory" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.zpy.dao.ClientsMapper"/>
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
-    <!--<bean id="mapperScan" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+
+    <bean id="mapperScan" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.zpy.dao"/>
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
-    </bean>-->
-    <bean id="serviceImpl" class="com.zpy.service.ServiceImpl">
-        <property name="clientsMapper" ref="mapperFactory"/>
+        <!--<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
     </bean>
 
 
